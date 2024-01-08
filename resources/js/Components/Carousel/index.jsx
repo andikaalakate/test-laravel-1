@@ -10,7 +10,7 @@ const Carousel = ({ images }) => {
         >
           <img
             src={image.src}
-            className="h-full w-full rounded-lg object-cover transition-all duration-500 hover:scale-105"
+            className="h-full w-full rounded-lg object-cover transition-all duration-500 hover:scale-105 hover:cursor-pointer"
             alt={image.alt}
             width={1280} height={576}
           />

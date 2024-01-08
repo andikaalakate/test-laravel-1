@@ -9,7 +9,7 @@ const Card = ({ images }) => {
                     key={index}
                     className="row group card mx-auto items-center justify-center rounded-lg border-2 border-color-whity bg-gradient-to-br from-color-whity to-white shadow-md shadow-slate-700 transition-all duration-500 hover:scale-105 hover:border-color-primary hover:from-color-primary hover:to-blue-500 active:scale-110"
                 >
-                    <Link href="/" className="cursor-pointer">
+                    <Link href="#" className="cursor-pointer">
                         <img
                             src={image.src} // Menggunakan properti src dari properti image
                             alt={image.alt} // Menggunakan properti alt dari properti image
