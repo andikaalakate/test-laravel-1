@@ -3,7 +3,6 @@ import AboutVanta from "@/Components/Contents/AboutVanta/index.jsx";
 import Navbar from "@/Components/Navbar/index.jsx";
 import NovelList from "@/Components/NovelList/index.jsx";
 import Layout from "@/Layouts/Layout";
-import { Head } from "@inertiajs/react";
 
 const Page = () => {
     const images = [];
@@ -19,8 +18,7 @@ const Page = () => {
 
     return (
       <>
-      <Head title="Home" />
-        <Layout>
+        <Layout title="Home">
             <div className="min-h-screen bg-color-whity">
                 <Carousel images={images} />
                 <Navbar />
