@@ -4,7 +4,7 @@ import Navbar from "@/Components/Navbar/index.jsx";
 import NovelList from "@/Components/NovelList/index.jsx";
 import Layout from "@/Layouts/Layout";
 
-const Page = () => {
+const Page = ({novels}) => {
     const images = [];
 
     for (let i = 1; i <= 10; i++) {
@@ -29,7 +29,8 @@ const Page = () => {
                     <AboutVanta />
                 </div>
                 <div className="mx-auto p-4 pb-20">
-                    <NovelList images={images} />
+                    <NovelList hTitle="Novel Terbaru" novels={novels} />
+                    <NovelList hTitle="Novel Populer" novels={novels} />
                 </div>
             </div>
         </Layout>

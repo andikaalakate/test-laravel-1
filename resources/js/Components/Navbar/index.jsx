@@ -14,7 +14,7 @@ const Navbar = () => {
                         <input
                             type="text"
                             placeholder="Search"
-                            className="input input-bordered w-24 bg-color-whity text-color-dark placeholder:text-color-secondary md:w-auto"
+                            className="input input-bordered w-24 h-8 bg-color-whity text-color-dark placeholder:text-color-secondary md:w-auto"
                         />
                     </div>
                     <div className="dropdown dropdown-end">
