@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image');
             $table->string('author');
+            $table->string('translator');
             $table->string('status');
             $table->string('genre');
             $table->timestamps();

@@ -32,7 +32,16 @@ class NovelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $novels = new Novel();
+        $novels->title = $request->title;
+        $novels->description = $request->description;
+        $novels->image = $request->image;
+        $novels->author = $request->author;
+        $novels->translator = auth()->user()->name;
+        $novels->status = $request->status;
+        $novels->genre = $request->genre;
+        $novels->save();
+        return redirect()->back()->with('message', 'Novel created successfully');
     }
 
     /**

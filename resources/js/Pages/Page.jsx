@@ -4,7 +4,7 @@ import Navbar from "@/Components/Navbar/index.jsx";
 import NovelList from "@/Components/NovelList/index.jsx";
 import Layout from "@/Layouts/Layout";
 
-const Page = ({novels}) => {
+const Page = ({novels, auth}) => {
     const images = [];
 
     for (let i = 1; i <= 10; i++) {
@@ -21,7 +21,7 @@ const Page = ({novels}) => {
         <Layout title="Home">
             <div className="min-h-screen bg-color-whity">
                 <Carousel images={images} />
-                <Navbar />
+                <Navbar user={auth.user} />
                 <div className="m-4 mx-auto max-w-5xl rounded-lg border-2 p-4 text-black shadow-lg bg-white">
                     <h1 className="text-center text-3xl font-bold">
                         VANTA Translation

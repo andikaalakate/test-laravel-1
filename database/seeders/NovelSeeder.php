@@ -22,10 +22,13 @@ class NovelSeeder extends Seeder
             $books[] = [
                 'title' => $faker->sentence,
                 'author' => $faker->name,
+                'translator' => $faker->name,
                 'description' => $faker->paragraph(2, true),
                 'genre' => 'novel',
                 'image' => '/e-book/e-book-' . $i . '.webp',
                 'status' => 'published',
+                'created_at' => now(),
+                'updated_at' => now(),  
             ];
         }
 
