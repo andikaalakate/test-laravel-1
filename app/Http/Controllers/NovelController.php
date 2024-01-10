@@ -15,7 +15,7 @@ class NovelController extends Controller
     public function index()
     {
         $novels = Novel::all();
-        
+
         return Inertia::render('Page', [
             'novels' => $novels,
         ]);
@@ -49,7 +49,7 @@ class NovelController extends Controller
         $novels->status = $request->status;
         $novels->genre = $request->genre;
         $novels->save();
-        // return Redirect::to('/dashboard')->with('message', 'Novel berhasil dibuat');
+        return redirect()->back()->with('message', 'Novel berhasil dibuat');
     }
 
     /**
@@ -57,15 +57,30 @@ class NovelController extends Controller
      */
     public function show(Novel $novel)
     {
-        //
+        $myNovels = Novel::where('translator', auth()->user()->name)->get();
+
+        return Inertia::render('Dashboard', [
+            'myNovels' => $myNovels,
+        ]);
+    }
+
+    public function showDashboard()
+    {
+        $myNovels = Novel::where('translator', auth()->user()->name)->get();
+
+        return Inertia::render('Dashboard', [
+            'myNovels' => $myNovels,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Novel $novel)
+    public function edit(Novel $novel, Request $request)
     {
-        //
+        return Inertia::render('EditNovel', [
+            'myNovels' => $novel->findOrFail($request->id),
+        ]);
     }
 
     /**
@@ -73,14 +88,36 @@ class NovelController extends Controller
      */
     public function update(Request $request, Novel $novel)
     {
-        //
+        $novelData = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'author' => $request->author,
+            'translator' => auth()->user()->name,
+            'status' => $request->status,
+            'genre' => $request->genre,
+            'updated_at' => now(),
+        ];
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $imageName = strtolower(str_replace(' ', '-', $request->title)) . '.' . $extension;
+            $image->move(public_path('e-book'), $imageName); // Move the image file to the public/e-book directory
+            $novelData['image'] = $imageName; // Save the image file name to the database
+        }
+
+        Novel::where('id', $request->id)->update($novelData);
+
+        return redirect()->route('dashboard')->with('success', 'Novel updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Novel $novel)
+    public function destroy(Request $request)
     {
-        //
+        $novel = Novel::find($request->id);
+        $novel->delete();
+        return redirect()->back()->with('message', 'Novel berhasil dihapus');
     }
 }

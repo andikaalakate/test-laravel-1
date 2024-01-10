@@ -32,14 +32,14 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', [NovelController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-Route::post('/novel', [NovelController::class, 'store'])->name('novel.store');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [NovelController::class, 'index'])->name('home');
+    Route::post('/novel', [NovelController::class, 'store'])->name('novel.store');
+    Route::get('/novel/edit', [NovelController::class, 'edit'])->name('novel.edit');
+    Route::post('/novel/update', [NovelController::class, 'update'])->name('novel.update');
+    Route::post('/novel/delete', [NovelController::class, 'destroy'])->name('novel.delete');
+    Route::get('/dashboard', [NovelController::class, 'showDashboard'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
