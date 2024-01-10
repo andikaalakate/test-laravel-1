@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Novel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class NovelController extends Controller
@@ -14,6 +15,7 @@ class NovelController extends Controller
     public function index()
     {
         $novels = Novel::all();
+        
         return Inertia::render('Page', [
             'novels' => $novels,
         ]);
@@ -35,13 +37,19 @@ class NovelController extends Controller
         $novels = new Novel();
         $novels->title = $request->title;
         $novels->description = $request->description;
-        $novels->image = $request->image;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $imageName = strtolower(str_replace(' ', '-', $request->title)) . '.' . $extension;
+            $image->move(public_path('e-book'), $imageName); // Pindahkan file gambar ke direktori public/e-book
+            $novels->image = $imageName; // Simpan nama file gambar ke database
+        }
         $novels->author = $request->author;
         $novels->translator = auth()->user()->name;
         $novels->status = $request->status;
         $novels->genre = $request->genre;
         $novels->save();
-        return redirect()->back()->with('message', 'Novel created successfully');
+        // return Redirect::to('/dashboard')->with('message', 'Novel berhasil dibuat');
     }
 
     /**

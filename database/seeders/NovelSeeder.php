@@ -25,7 +25,7 @@ class NovelSeeder extends Seeder
                 'translator' => $faker->name,
                 'description' => $faker->paragraph(2, true),
                 'genre' => 'novel',
-                'image' => '/e-book/e-book-' . $i . '.webp',
+                'image' => 'e-book-' . $i . '.webp',
                 'status' => 'published',
                 'created_at' => now(),
                 'updated_at' => now(),  

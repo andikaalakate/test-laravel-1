@@ -27,6 +27,7 @@
         "@phosphor-icons/react": "^2.0.15",
         "animate.css": "^4.1.1",
         "aos": "^2.3.4",
-        "daisyui": "^4.5.0"
+        "daisyui": "^4.5.0",
+        "form-data": "^4.0.0"
     }
 }

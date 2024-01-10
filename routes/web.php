@@ -33,7 +33,7 @@ use Inertia\Inertia;
 // });
 
 Route::get('/', [NovelController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-Route::post('/novel', [NovelController::class, 'store']);
+Route::post('/novel', [NovelController::class, 'store'])->name('novel.store');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

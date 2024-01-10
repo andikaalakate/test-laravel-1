@@ -11,8 +11,8 @@ const Card = ({ novels }) => {
                 >
                     <Link href="#" className="cursor-pointer">
                         <img
-                            src={novel.image} // Menggunakan properti src dari properti image
-                            alt={novel.image} // Menggunakan properti alt dari properti image
+                            src={"e-book/" + novel.image} // Menggunakan properti src dari properti image
+                            alt={"e-book/" + novel.image} // Menggunakan properti alt dari properti image
                             className="img-card items-start justify-start rounded-t-lg"
                             width={350}
                             height={350}
