@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/novel/edit', [NovelController::class, 'edit'])->name('novel.edit');
     Route::post('/novel/update', [NovelController::class, 'update'])->name('novel.update');
     Route::post('/novel/delete', [NovelController::class, 'destroy'])->name('novel.delete');
-    Route::get('/dashboard', [NovelController::class, 'showDashboard'])->name('dashboard');
+    Route::get('/dashboard', [NovelController::class, 'show'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

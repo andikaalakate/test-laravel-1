@@ -34,21 +34,26 @@ class NovelController extends Controller
      */
     public function store(Request $request)
     {
-        $novels = new Novel();
-        $novels->title = $request->title;
-        $novels->description = $request->description;
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'author' => 'required',
+            'status' => 'required',
+            'genre' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation for image upload
+        ]);
+
+        $novel = new Novel($request->only(['title', 'description', 'author', 'status', 'genre']));
+        $novel->translator = auth()->user()->name;
+
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $extension = $image->getClientOriginalExtension();
-            $imageName = strtolower(str_replace(' ', '-', $request->title)) . '.' . $extension;
-            $image->move(public_path('e-book'), $imageName); // Pindahkan file gambar ke direktori public/e-book
-            $novels->image = $imageName; // Simpan nama file gambar ke database
+            $imageName = strtolower(str_replace(' ', '-', $request->title)) . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('e-book'), $imageName);
+            $novel->image = $imageName;
         }
-        $novels->author = $request->author;
-        $novels->translator = auth()->user()->name;
-        $novels->status = $request->status;
-        $novels->genre = $request->genre;
-        $novels->save();
+
+        $novel->save();
+
         return redirect()->back()->with('message', 'Novel berhasil dibuat');
     }
 
