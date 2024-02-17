@@ -6,12 +6,12 @@ import "animate.css";
 const Layout = ({ children, title }) => {
     return (
         <>
-        <Head title={title} />
-        <div className="min-h-screen relative animate__animated animate__fadeIn animate__slow bg-color-whity">
-            {children}
-            <Footer />
-            <ScrollToTop />
-        </div>
+            <Head title={title} />
+            <div className="min-h-screen relative animate__animated animate__fadeIn animate__slow">
+                {children}
+                <Footer />
+                <ScrollToTop />
+            </div>
         </>
     );
 };

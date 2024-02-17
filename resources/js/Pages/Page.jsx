@@ -7,7 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
-const Page = ({novels, auth}) => {
+const Page = ({ novels, auth }) => {
     useEffect(() => {
         AOS.init({ duration: 1000 });
     });
@@ -25,13 +25,13 @@ const Page = ({novels, auth}) => {
     return (
         <>
             <Layout title="Home">
-                <div className="min-h-screen bg-color-whity">
+                <div className="min-h-screen">
                     <Carousel images={images} />
                     <Navbar user={auth.user} />
                     <div
                         data-aos="fade-up"
                         data-aos-anchor-placement="top-center"
-                        className="m-4 mx-auto max-w-5xl rounded-lg border-2 bg-white p-4 text-black shadow-lg"
+                        className="m-4 mx-auto max-w-5xl rounded-lg border-2 p-4 shadow-lg bg-white text-black"
                     >
                         <h1
                             data-aos="fade-up"

@@ -1,11 +1,11 @@
 import { Link } from "@inertiajs/react";
 import Card from "./Card";
 
-const NovelList = ({hTitle, novels}) => {
+const NovelList = ({ hTitle, novels }) => {
     return (
         <>
             <h3 data-aos="fade-up"
-                data-aos-anchor-placement="top-center" className="mx-auto py-8 text-center text-4xl font-bold text-color-dark">
+                data-aos-anchor-placement="top-center" className="mx-auto py-8 text-center text-4xl font-bold text-black dark:text-color-whity">
                 {hTitle}
             </h3>
             <div
